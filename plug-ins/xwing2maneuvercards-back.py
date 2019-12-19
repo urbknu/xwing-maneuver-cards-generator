@@ -594,16 +594,6 @@ colors = {
 }
 
 def xwing_single_back(image, layer, pilotfile, export, dir, include_sub_folder):
-    '''This plugin manipulates the X-Wing Ship Maneuver card text files and faction design layers
-    Args:
-        image (GIMP Image): GIMP image file
-        layer (GIMP Image Layer): GIMP image layer
-        pilotfile (String): Direct path to X-Wing Data2 pilot JSON
-    Raises:
-        RuntimeError:
-    Returns:
-        nothing
-    '''
     try:
         uuid = image.parasite_find("uuid")
         if uuid.data != "8788a1b2-0889-4a22-8d7f-879b29e4370a":
@@ -685,14 +675,6 @@ def xwing_bulk_back(image, layer, dir, include_sub_folder, destination_directory
 
     return
 def clean_factions(image):
-    '''Disables all faction related design layers
-    Args:
-        image (GIMP Image): GIMP image file
-    Raises:
-        RuntimeError:
-    Returns:
-        true
-    '''
     group_layer = pdb.gimp_image_get_layer_by_name(image, "Faction Information")
     for i in group_layer.children:
         set_layer_visibility(image, i, FALSE)
@@ -703,16 +685,6 @@ def clean_factions(image):
 
     return
 def set_faction(image,faction):
-    '''Enables defined faction relevant design layers
-    Args:
-        image (GIMP Image): GIMP image file
-        faction (String): faction name as formated in X-Wing2 Data Pilot JSONa
-    Raises:
-        RuntimeError:
-    Returns:
-        true
-    '''
-
     clean_factions(image)
 
     faction = (
@@ -885,62 +857,6 @@ def set_layer_visibility(image, layer, visible):
             pdb.gimp_item_set_visible(layer, visible)
     except:
         print "Unable to change layer visibility."
-    return
-def set_dial(image, dial_json):
-    '''Renders the dial according to the pilot JSON information
-    Args:
-        image (GIMP Image): GIMP image file
-        dial (json): X-Wing Data2 Pilot Dial json
-    Raises:
-        RuntimeError:
-    Returns:
-        true
-    '''
-    #const MANEUVERS = [  "Bank Left",  "Bank Right",  "Koiogran Turn",  "Segnor's Loop Left",  "Segnor's Loop Right",  "Stationary",  "Straight",  "Tallon Roll Left",  "Tallon Roll Right",  "Turn Left",  "Turn Right"];
-    #https://xwvassal.info/dialgen/dialgen
-    dial = {'1-0':{'value':'','color':''}, '1-1':{'value':'','color':''}, '1-2': {'value':'','color':''},'1-3': {'value':'','color':''},'1-4': {'value':'','color':''},'1-5': {'value':'','color':''}, '1-6': {'value':'','color':''},'2-0': {'value':'','color':''}, '2-1': {'value':'','color':''}, '2-2': {'value':'','color':''},'2-3': {'value':'','color':''},'2-4': {'value':'','color':''},'2-5': {'value':'','color':''}, '2-6': {'value':'','color':''},'3-0': {'value':'','color':''}, '3-1': {'value':'','color':''}, '3-2': {'value':'','color':''},'3-3': {'value':'','color':''},'3-4': {'value':'','color':''},'3-5': {'value':'','color':''}, '3-6': {'value':'','color':''},'4-0': {'value':'','color':''}, '4-1': {'value':'','color':''}, '4-2': {'value':'','color':''},'4-3': {'value':'','color':''},'4-4': {'value':'','color':''},'4-5': {'value':'','color':''}, '4-6': {'value':'','color':''},'5-0': {'value':'','color':''}, '5-1': {'value':'','color':''}, '5-2': {'value':'','color':''},'5-3': {'value':'','color':''},'5-4': {'value':'','color':''},'5-5': {'value':'','color':''}, '5-6': {'value':'','color':''}}
-    maneuverIcon = {"E":":", "R":";", "T":"4", "Y":"6", "O":"5", "P":"3", "A":"J", "S":"K", "D":"L", "F":"8", "K":"2", "L":"1", "B":"7", "N":"9"}
-    difficultyColor = {"W":colors["dialwhite"], "B":colors["dialblue"], "R":colors["dialred"]}
-    maneuverLayer = { "E":"0", "R":"6", "T":"1", "Y":"5", "O":"3", "P":"6", "A":"2", "S":"3", "D":"4", "F":"3", "K":"6", "L":"0", "B":"2", "N":"4"}
-
-    increase_row = 0
-
-    if next((man for man in dial_json if man[1:2] == 'O'), None) != None:
-        increase_row = 1
-    if next((man for man in dial_json if man[1:2] == 'S'), None) != None:
-        man = next((man for man in dial_json if man[1:2] == 'S'), None)
-        increase_row = int(man[0:1])
-
-    #show numbers
-    for x in range(1, 6):
-        if increase_row >0:
-            set_text_layer_text(image, "#"+str(x), x-increase_row)
-            if x-increase_row <= 0:
-                set_layer_visibility(image, "#"+str(x), FALSE)
-            else:
-                set_layer_visibility(image, "#"+str(x), TRUE)
-        else:
-            set_text_layer_text(image, "#"+str(x), x)
-            set_layer_visibility(image, "#"+str(x), TRUE)
-
-    for maneuver in dial_json:
-        if maneuver[1:2] == 'A' or maneuver[1:2] == 'S' or maneuver[1:2] == 'D' :
-            speed = str(-int(maneuver[0:1])+increase_row+1)
-        else:
-            speed = str(int(maneuver[0:1])+increase_row)
-        dial[speed+"-"+maneuverLayer.get(maneuver[1:2])]["value"] = maneuverIcon.get(maneuver[1:2], "")
-        dial[speed+"-"+maneuverLayer.get(maneuver[1:2])]["color"] = difficultyColor.get(maneuver[-1:], "#00ff0f")
-
-    for man_cell in dial:
-        if dial[man_cell]["value"] != "":
-            if man_cell[-1:] == "0":
-                    set_layer_visibility(image, "#"+man_cell[0:1], FALSE)
-            set_layer_visibility(image, man_cell, TRUE)
-            set_text_layer_text(image, man_cell, dial[man_cell]["value"])
-            set_text_layer_color(image, man_cell, dial[man_cell]["color"])
-        else:
-            set_layer_visibility(image, man_cell, FALSE)
-
     return
 def set_action_bar(image, action_json):
     #"actions": { "1": "boost", "2": "focus", "3": "evade", "4": "lock", "5": "barrelroll", "6": "reinforce", "7": "cloak", "8": "coordinate", "9": "calculate", "10": "jam", "12": "reload", "13": "slam", "14": "rotatearc"}

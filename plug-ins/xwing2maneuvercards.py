@@ -595,16 +595,6 @@ colors = {
 }
 
 def xwing_single(image, layer, pilotfile, include_ship_ability, export, dir, include_sub_folder):
-    '''This plugin manipulates the X-Wing Ship Maneuver card text files and faction design layers
-    Args:
-        image (GIMP Image): GIMP image file
-        layer (GIMP Image Layer): GIMP image layer
-        pilotfile (String): Direct path to X-Wing Data2 pilot JSON
-    Raises:
-        RuntimeError:
-    Returns:
-        nothing
-    '''
     try:
         uuid = image.parasite_find("uuid")
         if uuid.data != "2fbf48a6-1e3b-11ea-978f-2e728ce88125":
@@ -694,14 +684,6 @@ def xwing_bulk(image, layer, dir, include_sub_folder, destination_directory, cre
 
     return
 def clean_factions(image):
-    '''Disables all faction related design layers
-    Args:
-        image (GIMP Image): GIMP image file
-    Raises:
-        RuntimeError:
-    Returns:
-        true
-    '''
     group_layer = pdb.gimp_image_get_layer_by_name(image, "Faction Information")
     for i in group_layer.children:
         set_layer_visibility(image, i, FALSE)
@@ -712,16 +694,6 @@ def clean_factions(image):
 
     return
 def set_faction(image,faction):
-    '''Enables defined faction relevant design layers
-    Args:
-        image (GIMP Image): GIMP image file
-        faction (String): faction name as formated in X-Wing2 Data Pilot JSONa
-    Raises:
-        RuntimeError:
-    Returns:
-        true
-    '''
-
     clean_factions(image)
 
     faction = (
@@ -828,15 +800,6 @@ def set_layer_visibility(image, layer, visible):
         print "Unable to change layer visibility."
     return
 def set_dial(image, dial_json):
-    '''Renders the dial according to the pilot JSON information
-    Args:
-        image (GIMP Image): GIMP image file
-        dial (json): X-Wing Data2 Pilot Dial json
-    Raises:
-        RuntimeError:
-    Returns:
-        true
-    '''
     #const MANEUVERS = [  "Bank Left",  "Bank Right",  "Koiogran Turn",  "Segnor's Loop Left",  "Segnor's Loop Right",  "Stationary",  "Straight",  "Tallon Roll Left",  "Tallon Roll Right",  "Turn Left",  "Turn Right"];
     #https://xwvassal.info/dialgen/dialgen
     dial = {'1-0':{'value':'','color':''}, '1-1':{'value':'','color':''}, '1-2': {'value':'','color':''},'1-3': {'value':'','color':''},'1-4': {'value':'','color':''},'1-5': {'value':'','color':''}, '1-6': {'value':'','color':''},'2-0': {'value':'','color':''}, '2-1': {'value':'','color':''}, '2-2': {'value':'','color':''},'2-3': {'value':'','color':''},'2-4': {'value':'','color':''},'2-5': {'value':'','color':''}, '2-6': {'value':'','color':''},'3-0': {'value':'','color':''}, '3-1': {'value':'','color':''}, '3-2': {'value':'','color':''},'3-3': {'value':'','color':''},'3-4': {'value':'','color':''},'3-5': {'value':'','color':''}, '3-6': {'value':'','color':''},'4-0': {'value':'','color':''}, '4-1': {'value':'','color':''}, '4-2': {'value':'','color':''},'4-3': {'value':'','color':''},'4-4': {'value':'','color':''},'4-5': {'value':'','color':''}, '4-6': {'value':'','color':''},'5-0': {'value':'','color':''}, '5-1': {'value':'','color':''}, '5-2': {'value':'','color':''},'5-3': {'value':'','color':''},'5-4': {'value':'','color':''},'5-5': {'value':'','color':''}, '5-6': {'value':'','color':''}}
