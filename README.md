@@ -1,15 +1,15 @@
-# X-Wing 2.0 Maneuvers cards
+# X-Wing 2.0 Maneuver Cards
 X-Wing 2.0 Maneuver cards for those of us who have difficulty remembering all the maneuvers
 
 ## About
 * Created by Knut Urbye at 3-T-8.com for personal use by the X-Wing Community
 * Version: 1.0
 
-## TODO
-* Trello: https://trello.com/b/Lj8IR5So/todo
+## How to
+Using the GIMP Python plugins and included templates is quite straight forward. All you have to do is find your personal plug-ins directory and upload the .py files there. The Template files can be opened form anywhere. The plug-ins can be accessed from the "Plug-ins" menu in Gimp.
 
-## HOW TO
-1. 
+## To do
+* Trello: https://trello.com/b/Lj8IR5So/todo'
 
 ## Licensing and attribution
 * Star Wars, X-Wing: The Miniatures Game and all related properties, images and text are owned by Fantasy Flight Games, Lucasfilm Ltd., and/or Disney.
