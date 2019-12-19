@@ -8,8 +8,8 @@ X-Wing 2.0 Maneuver cards for those of us who have difficulty remembering all th
 ## Prerequisites
 * [GIMP](https://gimp.org/)
 * Fonts:
-  * Squarish Sans CT
-  * Kimberley Heavy
+  * [Squarish Sans CT](https://github.com/opensourcedesign/fonts/tree/master/squarishSans)
+  * [Kimberley Heavy](https://www.dafont.com/kimberley.font)
   * [xwing-miniatures-font](https://github.com/geordanr/xwing-miniatures-font)
 * [X-Wing2 Data](https://github.com/guidokessels/xwing-data2)
 
