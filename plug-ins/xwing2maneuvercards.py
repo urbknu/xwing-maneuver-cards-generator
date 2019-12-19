@@ -605,12 +605,6 @@ def xwing_single(image, layer, pilotfile, include_ship_ability, export, dir, inc
     Returns:
         nothing
     '''
-    '''
-    parasite = gimp.Parasite("uuid",1,"2fbf48a6-1e3b-11ea-978f-2e728ce88125")
-    image.parasite_attach(parasite)
-    parasite = gimp.Parasite("version",1,str(version))
-    image.parasite_attach(parasite)
-    '''
     try:
         uuid = image.parasite_find("uuid")
         if uuid.data != "2fbf48a6-1e3b-11ea-978f-2e728ce88125":

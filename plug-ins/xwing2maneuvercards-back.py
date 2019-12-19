@@ -604,13 +604,6 @@ def xwing_single_back(image, layer, pilotfile, export, dir, include_sub_folder):
     Returns:
         nothing
     '''
-    '''
-    parasite = gimp.Parasite("uuid",1,"8788a1b2-0889-4a22-8d7f-879b29e4370a")
-    image.parasite_attach(parasite)
-    parasite = gimp.Parasite("version",1,str(version))
-    image.parasite_attach(parasite)
-    '''
-
     try:
         uuid = image.parasite_find("uuid")
         if uuid.data != "8788a1b2-0889-4a22-8d7f-879b29e4370a":
