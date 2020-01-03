@@ -981,6 +981,7 @@ def export_image(image, path, filename):
     pdb.gimp_file_save(new_image, layer, path + "\\" + filename, path + "\\" + filename)
     pdb.gimp_image_delete(new_image)
     return
+    
 register(
         "xwing-bulk",
         "",

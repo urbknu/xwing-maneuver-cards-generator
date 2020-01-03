@@ -704,7 +704,7 @@ def set_ship_information(image, json):
 
 
     clear_group_children(image, pdb.gimp_image_get_layer_by_name(image, "Ship Information"))
-    clear_group_children(image, pdb.gimp_image_get_layer_by_name(image, "Ship Type Overlay"))
+    #clear_group_children(image, pdb.gimp_image_get_layer_by_name(image, "Ship Type Overlay"))
 
     faction = ships[json["faction"]]
     ship = faction[json["xws"]]
