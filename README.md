@@ -3,7 +3,7 @@ X-Wing 2.0 Maneuver cards for those of us who have difficulty remembering all th
 
 ## About
 * Created by Knut Urbye at 3-T-8.com for personal use by the X-Wing Community
-* Version: 1.0
+* Version: 1.w7
 
 ## Prerequisites
 * [GIMP](https://gimp.org/)
@@ -24,3 +24,14 @@ Using the GIMP Python plugins and included templates is quite straight forward. 
 * Cards are generated using X-Wing2 Data: https://github.com/guidokessels/xwing-data2
 * Icon and Ship Fonts: https://github.com/geordanr/xwing-miniatures-font
 * Template starting point: https://www.deviantart.com/odanan/art/X-Wing-2nd-Ed-Template-v2-748403857
+
+## Change log
+### v1.0
+* All waves 1-6 scripted to generate cards
+### v1.w7
+* Updated Fireball and Tie ba Interceptor scripts with ship ability and new ship icons
+* Added scripts for wave 7 including
+  * Xi-class Light Shuttle
+  * LAAT
+  * HMP Droid Gunship
+  * TIE/rb Heavy
